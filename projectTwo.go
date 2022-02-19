@@ -21,6 +21,8 @@ func main() {
 		}
 		if strings.ToLower(userAnswer) == "yes" {
 			go fortune(ch)
+			ch <- ""
+
 		} else if strings.ToLower(userAnswer) == "no" {
 			os.Exit(-1)
 		} else {
@@ -31,13 +33,18 @@ func main() {
 
 }
 func fortune(c chan string) {
-	fileasBytes, err := ioutil.ReadFile("Fortunes.txt") //converting file to bytes
+	fileasBytes, err := ioutil.ReadFile("Fortunes.txt")
 	if err != nil {
 		log.Fatalln("Error reading this file: ", err)
 
 	}
 	fortunes := strings.Split(string(fileasBytes), "%%")
-	randomIndex := rand.Intn(len(fortunes))
-	pick := fortunes[randomIndex]
-	c <- pick
+
+	for {
+		msg := <-c
+		randomIndex := rand.Intn(len(fortunes))
+		fortChosen := fortunes[randomIndex]
+		fmt.Println(fortChosen)
+		fmt.Println(msg)
+	}
 }
