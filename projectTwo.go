@@ -17,7 +17,7 @@ func main() {
 		fmt.Println("Would you like another fortune?: YES or NO")
 		_, err := fmt.Scan(&userAnswer)
 		if err != nil {
-			log.Fatalln("Error reading this file: ", err)
+			log.Fatalln(err)
 		}
 		if strings.ToLower(userAnswer) == "yes" {
 			go fortune(ch)
