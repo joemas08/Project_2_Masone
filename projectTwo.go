@@ -12,6 +12,7 @@ import (
 func main() {
 	var userAnswer string
 	ch := make(chan string)
+	go fortune(ch)
 
 	for {
 		fmt.Println("Would you like another fortune?: YES or NO")
@@ -20,7 +21,6 @@ func main() {
 			log.Fatalln(err)
 		}
 		if strings.ToLower(userAnswer) == "yes" {
-			go fortune(ch)
 			ch <- ""
 
 		} else if strings.ToLower(userAnswer) == "no" {
