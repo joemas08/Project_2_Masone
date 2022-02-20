@@ -41,10 +41,9 @@ func fortune(c chan string) {
 	fortunes := strings.Split(string(fileasBytes), "%%")
 
 	for {
-		msg := <-c
+		_ = <-c //receiving msg on channel
 		randomIndex := rand.Intn(len(fortunes))
 		fortChosen := fortunes[randomIndex]
 		fmt.Println(fortChosen)
-		fmt.Println(msg)
 	}
 }
