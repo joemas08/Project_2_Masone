@@ -21,7 +21,7 @@ func main() {
 			log.Fatalln(err)
 		}
 		if strings.ToLower(userAnswer) == "yes" {
-			ch <- ""
+			ch <- "" //sending message on channel
 
 		} else if strings.ToLower(userAnswer) == "no" {
 			os.Exit(-1)
