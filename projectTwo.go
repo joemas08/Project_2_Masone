@@ -27,6 +27,7 @@ func main() {
 			os.Exit(-1)
 		} else {
 			fmt.Println("Answer must be YES or NO! ")
+			fmt.Println("Would you like another fortune?: YES or NO")
 			continue
 		}
 	}
