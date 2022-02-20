@@ -13,9 +13,9 @@ func main() {
 	var userAnswer string
 	ch := make(chan string)
 	go fortune(ch)
+	fmt.Println("Would you like another fortune?: YES or NO")
 
 	for {
-		fmt.Println("Would you like another fortune?: YES or NO")
 		_, err := fmt.Scan(&userAnswer)
 		if err != nil {
 			log.Fatalln(err)
@@ -45,5 +45,6 @@ func fortune(c chan string) {
 		randomIndex := rand.Intn(len(fortunes))
 		fortChosen := fortunes[randomIndex]
 		fmt.Println(fortChosen)
+		fmt.Println("Would you like another fortune?: YES or NO")
 	}
 }
