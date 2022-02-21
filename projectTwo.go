@@ -7,6 +7,7 @@ import (
 	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 func main() {
@@ -42,7 +43,8 @@ func fortune(c chan string) {
 	fortunes := strings.Split(string(fileasBytes), "%%")
 
 	for {
-		_ = <-c //receiving msg on channel
+		_ = <-c                      //receiving msg on channel
+		rand.Seed(time.Now().Unix()) //improving random generator
 		randomIndex := rand.Intn(len(fortunes))
 		fortChosen := fortunes[randomIndex]
 		fmt.Println(fortChosen)
